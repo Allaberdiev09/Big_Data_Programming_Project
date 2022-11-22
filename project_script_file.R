@@ -78,5 +78,23 @@ ggscatter(objFile, x = "energy_protein", y = "f_obese",
           xlab = "Energy Protein", ylab = "Affect to obesity")
 #correlation ends here
 
+#regression starts here
+#regression between energy_saturate and f_obese
+x <- c(objFile$energy_saturate)
+y <- c(objFile$f_obese)
+relation <- lm(y~x)
+
+plot(y,x,col = "blue",main = "Energy Saturate Affect to obesity",
+     abline(lm(x~y)),cex = 1.1,pch = 13,xlab = "energy_saturate",ylab = "f_obese")
+
+
+#regression between energy_protein and f_obese
+x2 <- c(objFile$energy_protein)
+y2 <- c(objFile$f_obese)
+relation <- lm(y~x)
+
+plot(y2,x2,col = "red",main = "Energy Protein Affect to obesity",
+     abline(lm(x2~y2)),cex = 1.1,pch = 13,xlab = "energy_protein",ylab = "f_obese")
+#regression ends here
 
 
