@@ -37,3 +37,14 @@ pllp <- microbenchmark("Sequential Processing All Area Level Purchases" = {lappl
 pllp
 autoplot(pllp)
 #parallel processing ends here
+
+#hypothesis testing starts here
+objFile<-read.csv("C:/Users/user/OneDrive/Desktop/BIG DATA/objective.csv")
+View(objFile)
+
+esaturate <- lm(f_obese ~ energy_saturate, data = objFile)
+print(summary(esaturate))
+
+eprotein <- lm(f_obese ~ energy_protein, data = objFile)
+print(summary(eprotein))
+#hypothesis testing ends here
