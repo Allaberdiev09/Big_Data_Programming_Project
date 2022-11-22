@@ -48,3 +48,35 @@ print(summary(esaturate))
 eprotein <- lm(f_obese ~ energy_protein, data = objFile)
 print(summary(eprotein))
 #hypothesis testing ends here
+
+#correlation starts here
+highestcorrelation <- function(mydataframe,numtoreport)
+{
+  cormatrix <- cor(mydataframe)
+  diag(cormatrix) <- 0
+  cormatrix[lower.tri(cormatrix)] <- 0
+  fm <- as.data.frame(as.table(cormatrix))
+  names(fm) <- c("Energy Saturate", "Energy Protein","Correlation")
+  head(fm[order(abs(fm$Correlation),decreasing=T),],n=numtoreport)
+}
+highestcorr <- select(objFile, 'f_obese', 'energy_saturate', 'energy_protein')
+highestcorrelation(highestcorr, 10)
+
+#correlation between energy_saturate and f_obese
+library("ggpubr")
+ggscatter(objFile, x = "energy_saturate", y = "f_obese", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Energy Saturate", ylab = "Affect to obesity")
+
+
+#correlation between energy_protein and f_obese
+library("ggpubr")
+ggscatter(objFile, x = "energy_protein", y = "f_obese", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Energy Protein", ylab = "Affect to obesity")
+#correlation ends here
+
+
+
