@@ -33,7 +33,7 @@ pllfcluster <- function(i){
   stopCluster(cl)
 }
 library(microbenchmark)
-pllp <- microbenchmark("Sequential Processing All Area Level Purchases" = {lapply(1:100, pllf)}, pllfcluster())
+pllp <- microbenchmark("Parallel Processing All Area Level Purchases" = {lapply(1:100, pllf)}, pllfcluster())
 pllp
 autoplot(pllp)
 #parallel processing ends here
